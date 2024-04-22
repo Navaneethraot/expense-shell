@@ -14,7 +14,7 @@ VALIDATE(){
     then
         echo -e "$2...$R FAILED $N"
     else
-        echo  -e "$2...$G Success $N"  
+        echo  -e "$2...$G Success $W"  
     fi    
 
 }
@@ -29,6 +29,7 @@ if [ $USERID -ne 0]
     dnf install nginx -y &>>$LOGFILE
     VALIDATE $? "Installing Nginix"
     systemctl enable nginx &>>$LOGFILE
+
 VALIDATE $? "Enabling nginx"
 
 systemctl start nginx &>>$LOGFILE
