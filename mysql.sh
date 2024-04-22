@@ -26,10 +26,19 @@ VALIDATE(){
 if  [ $USERID -ne 0 ]
     then
         echo "Please run this script with root access"
-        exit 1
+        exit 1  # manually exit if error comes.
     else
         echo "you are super user"
     fi  
 
     dnf install mysql -y &>>$LOGFILE
     VALIDATE $? " Installing mysql server"
+
+    systemctl enable mysqld &>>$LOGFILE
+    VALIDATE $? "Enabling mysql"
+
+    systemctl start mysqld &>>$LOGFILE
+    VALIDATE $? "Starting MySql"
+
+    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+    VALIDATE $? "Setting up root password"
