@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USERID=$(id -u)
-TIMESTAMP=$($ date +%F-%H-%M-%S)
+TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPTNAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPTNAME-$TIMESTAMP.log
 
@@ -17,7 +17,7 @@ VALIDATE(){
     fi        
 }
 
-if  [  $USERID -ne 0]
+if  [ $USERID -ne 0 ]
 then
     echo "Run this Script with Root Access"
     exit  1
